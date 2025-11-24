@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
 
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.kotlin.reflect)
 
     implementation(libs.skafold)
     implementation(libs.skafold.processor)
