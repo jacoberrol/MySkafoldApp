@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerializableData
-class AutonData(var points: Int = 0, var didMove: Boolean = false) : PageData("auton") {
+class AutonData(var points: Int = 0, var didMove: String = "") : PageData("auton") {
 }

@@ -3,27 +3,25 @@ package com.example.app.component
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import io.oliverj.skaffold.data.skafolded
 
 @Composable
-fun SKCheckbox(
-    fieldName: String,
+fun SKLabeledComposable(
     label: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    composable: @Composable () -> Unit
 ) {
-    var fieldValue: Boolean by skafolded { fieldName }
+    val labelWidth = LocalLabelWidth.current
 
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(label)
-        Checkbox(fieldValue, { fieldValue = it })
+        SKLabel(label,modifier.width(labelWidth))
+        composable()
     }
 }

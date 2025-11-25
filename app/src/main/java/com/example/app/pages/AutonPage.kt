@@ -30,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -37,7 +38,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.app.MainActivity
 import com.example.app.component.SKCheckbox
+import com.example.app.component.SKChoice
+import com.example.app.component.SKCounter
+import com.example.app.component.SKForm
 import com.example.app.component.SKIncrement
+import com.example.app.component.SKLabeledComposable
+import com.example.app.component.SKLabeledCounter
 import com.example.app.data.AutonData
 import com.example.app.ui.theme.SkafoldExampleAppTheme
 import com.example.app.ui.theme.Typography
@@ -52,11 +58,21 @@ class AutonPage(onNext: () -> Unit = EMPTY_LAMBDA, onBack: () -> Unit = EMPTY_LA
     override fun Render() {
         var name: String by skafolded { "name" }
 
-        Column(modifier = Modifier.padding(10.dp)) {
-            Text("Auton", style= MaterialTheme.typography.titleLarge)
-            SKIncrement( "points", "Points" )
-            SKCheckbox("didMove", "Did Move")
 
+        SKForm(labelWidth = 150.dp, Modifier.padding(10.dp)) {
+            Text("Auton", style= MaterialTheme.typography.titleLarge)
+            SKLabeledComposable("Points Scored") {
+                SKCounter(
+                    "points",
+                    Modifier.height(40.dp)
+                )
+            }
+            SKLabeledComposable("Did Robot Move?") {
+                SKChoice(
+                    "didMove",
+                    listOf("Yes", "No")
+                )
+            }
         }
     }
 }
