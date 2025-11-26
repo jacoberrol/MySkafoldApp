@@ -1,6 +1,7 @@
 package com.example.app.component
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
@@ -12,16 +13,23 @@ import androidx.compose.ui.Modifier
 fun SKLabeledComposable(
     label: String,
     modifier: Modifier = Modifier,
-    composable: @Composable () -> Unit
+    content: @Composable () -> Unit
 ) {
     val labelWidth = LocalLabelWidth.current
+    val componentWidth = LocalComponentWidth.current
 
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        SKLabel(label,modifier.width(labelWidth))
-        composable()
+        SKLabel(label,Modifier.width(labelWidth))
+
+        Box(
+            modifier = Modifier.width(componentWidth),
+            contentAlignment = Alignment.Center
+        ) {
+            content()
+        }
     }
 }

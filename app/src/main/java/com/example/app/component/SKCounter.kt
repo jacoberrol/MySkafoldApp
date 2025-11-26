@@ -3,6 +3,8 @@ package com.example.app.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -20,9 +22,12 @@ fun SKCounter(
     modifier: Modifier = Modifier
 ) {
     var field: Int by skafolded { fieldName }
+    val fieldHeight = LocalFieldHeight.current
 
     Row(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxWidth()
+            .height(fieldHeight),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Button(
@@ -33,8 +38,9 @@ fun SKCounter(
         }
         Box(
             modifier = modifier
-                .background(MaterialTheme.colorScheme.primary)
-                .padding(horizontal = 20.dp),
+                .weight(1f)
+                .height(fieldHeight)
+                .background(MaterialTheme.colorScheme.primary),
             contentAlignment = Alignment.Center
         ) {
             Text("$field", color = MaterialTheme.colorScheme.onPrimary)
