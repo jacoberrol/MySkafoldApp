@@ -10,7 +10,7 @@ fun SKYesNoChoice (
 ) {
     SKChoice(
         fieldName,
-        listOf("Yes","No"),
+        listOf("No","Yes"),
         {x -> (x=="Yes")},
         modifier )
 }

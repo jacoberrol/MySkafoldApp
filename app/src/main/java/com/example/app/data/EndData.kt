@@ -6,5 +6,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerializableData
-class EndData : PageData("end") {
+class EndData(
+    var barge_parked: Int = 0,
+    var barge_shallowClimb: Int = 0,
+    var barge_deepClimb: Int = 0,
+    var autonRP: Boolean = false,
+    var coralRP: Boolean = false,
+    var bargeRP: Boolean = false
+) : PageData("end") {
 }
