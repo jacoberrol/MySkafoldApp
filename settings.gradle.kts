@@ -21,3 +21,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "SkafoldExampleApp"
 include(":app")
+
+includeBuild("skafold") {
+    dependencySubstitution {
+        substitute(module("io.oliverj.skafold:skafold"))
+            .using(project(":skafold"))   // root project of the included build
+    }
+}
