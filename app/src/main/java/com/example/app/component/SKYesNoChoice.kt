@@ -1,0 +1,16 @@
+package com.example.app.component
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+
+@Composable
+fun SKYesNoChoice (
+    fieldName: String,
+    modifier: Modifier = Modifier
+) {
+    SKChoice(
+        fieldName,
+        listOf("Yes","No"),
+        {x -> (x=="Yes")},
+        modifier )
+}

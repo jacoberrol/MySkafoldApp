@@ -12,16 +12,16 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import io.oliverj.skaffold.data.skafolded
 
 @Composable
-fun SKChoice(
+fun <T> SKChoice(
     fieldName: String,
     options: List<String>,
+    convertType: (String) -> T,
     modifier: Modifier = Modifier
 ) {
-    var field: String by skafolded { fieldName }
+    var field: T by skafolded { fieldName }
     var selectedIndex by remember { mutableIntStateOf(0) }
     val fieldHeight = LocalFieldHeight.current
 
@@ -39,7 +39,7 @@ fun SKChoice(
                 ),
                 onClick = {
                     selectedIndex = index
-                    field = options.get(index)
+                    field = convertType(options[index])
                 },
                 selected = index == selectedIndex,
                 label = { Text(label) }

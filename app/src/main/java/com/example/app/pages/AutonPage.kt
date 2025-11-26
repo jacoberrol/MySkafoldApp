@@ -1,6 +1,5 @@
 package com.example.app.pages
 
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -8,10 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.app.component.SKChoice
 import com.example.app.component.SKCounter
 import com.example.app.component.SKForm
 import com.example.app.component.SKLabeledComposable
+import com.example.app.component.SKYesNoChoice
 import com.example.app.data.AutonData
 import com.example.app.ui.theme.SkafoldExampleAppTheme
 import io.oliverj.skaffold.EMPTY_LAMBDA
@@ -34,13 +33,11 @@ class AutonPage(onNext: () -> Unit = EMPTY_LAMBDA, onBack: () -> Unit = EMPTY_LA
                 SKCounter("points")
             }
             SKLabeledComposable("Did Robot Move?") {
-                SKChoice("didMove", listOf("Yes", "No"))
+                SKYesNoChoice("didMove")
             }
         }
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable
