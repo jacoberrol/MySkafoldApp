@@ -14,11 +14,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.oliverj.skaffold.data.skafolded
+import kotlin.math.max
+import kotlin.math.min
 
 @Composable
 fun SKCounter(
     fieldName: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    minValue: Int = 0,
+    maxValue: Int = Int.MAX_VALUE
 ) {
     var field: Int by skafolded { fieldName }
     val fieldHeight = LocalFieldHeight.current
@@ -30,7 +34,7 @@ fun SKCounter(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Button(
-            { field -= 1 },
+            { field = max(minValue,field-1) },
             shape = RoundedCornerShape(25.dp, 0.dp, 0.dp, 25.dp),
         ) {
             Text("-")
@@ -45,7 +49,7 @@ fun SKCounter(
             Text("$field", color = MaterialTheme.colorScheme.onPrimary)
         }
         Button(
-            { field += 1 },
+            { field = min(maxValue,field+1) },
             shape = RoundedCornerShape(0.dp, 25.dp, 25.dp, 0.dp),
         ) {
             Text("+")
